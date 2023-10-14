@@ -53,7 +53,6 @@ function makeMatrix(arrOfConnections) {
             }
         }
     }
-    console.log(matrix);
     return matrix
 }
 

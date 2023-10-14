@@ -30,7 +30,6 @@ function getConections(edges) {
     }
 
     return arrOfNodes
-
 }
 
 
@@ -66,20 +65,64 @@ function verifyBorder(id1, id2, arrOfConnections) {
     const city02 = arrOfConnections[id2].name
 
     if(result) {
-        console.log(`\nExiste conexão ente o Estado de${city01.name} e o Estado de${city02.name}\n`);
+        console.log(`\nExiste conexão ente o cidade de${city01.name} e o cidade de${city02.name}\n`);
     } else {
-        console.log(`\nNão existe conexão ente o Estado de${city01.name} e o Estado de${city02.name}\n`);
+        console.log(`\nNão existe conexão ente o cidade de${city01.name} e o cidade de${city02.name}\n`);
     }
 }
 
+function verifyMostBorder(arrOfConnections) {
+    
+    let maxLength = 0
+    for(let i = 0; i < arrOfConnections.length; i++) {
+        if(maxLength < arrOfConnections[i].connections.length) {
+            maxLength = arrOfConnections[i].connections.length
+        }
+    }
+    
+    return console.log(maxLength);
+}
 
+function verifyLeastBorder(arrOfConnections) {
+    
+    let minLength = arrOfConnections[0].connections.length
+
+    for(let i = 1; i < arrOfConnections.length; i++) {
+        if(minLength > arrOfConnections[i].connections.length) {
+            minLength = arrOfConnections[i].connections.length
+        }
+    }
+    
+    return console.log(minLength);
+}
+
+function showAmountOfNodes(cities) {
+    console.log(cities.length);
+}
+
+function numberOfEdges(adjacentMatrix) {
+
+    let count = 0
+    for (let i = 0; i < adjacentMatrix.length; i++) {
+        for (let j = 0; j < adjacentMatrix.length; j++) {
+            if(adjacentMatrix[i][j] == 1) {
+                count++
+            }
+        }
+    }
+    console.log(count/2);
+}
 
 
 const cities = getCities('./src/data/nodes.csv');
 const edges = getEdges('./src/data/edges.csv');
 const arrOfConnections = getConections(edges)
-makeMatrix(arrOfConnections)
+const adjacentMatrix = makeMatrix(arrOfConnections)
 
-verifyBorder(12, 14, arrOfConnections)
-
+//verifyLeastBorder(arrOfConnections)
+//verifyMostBorder(arrOfConnections)
+//verifyBorder(12, 14, arrOfConnections)
 //showNodes(cities)
+showAmountOfNodes(cities)
+
+//numberOfEdges(adjacentMatrix)

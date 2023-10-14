@@ -113,6 +113,17 @@ function numberOfEdges(adjacentMatrix) {
     console.log(count/2);
 }
 
+function calculateAverageDegree(arrOfConnections) {
+    let countOfDegree = 0
+
+    for (let i = 0; i < arrOfConnections.length; i++) {
+        countOfDegree += arrOfConnections[i].connections.length
+    }
+
+    const averageOfDegree = countOfDegree/arrOfConnections.length
+    console.log(`Media de graus: ${averageOfDegree}\nNúmero total de graus: ${countOfDegree}`);
+}
+
 
 const cities = getCities('./src/data/nodes.csv');
 const edges = getEdges('./src/data/edges.csv');
@@ -123,6 +134,6 @@ const adjacentMatrix = makeMatrix(arrOfConnections)
 //verifyMostBorder(arrOfConnections)
 //verifyBorder(12, 14, arrOfConnections)
 //showNodes(cities)
-showAmountOfNodes(cities)
-
+//showAmountOfNodes(cities)
+calculateAverageDegree(arrOfConnections)
 //numberOfEdges(adjacentMatrix)

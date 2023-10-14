@@ -50,10 +50,27 @@ function makeMatrix(arrOfConnections) {
         }
     }
 
-    console.log(matrix);
     return matrix
 }
 
+
+function showNodes(cities) {
+    console.log(cities);
+}
+
+function verifyBorder(id1, id2, arrOfConnections) {
+
+    const result = arrOfConnections[id1].connections.includes(id2)
+
+    const city01 = arrOfConnections[id1].name
+    const city02 = arrOfConnections[id2].name
+
+    if(result) {
+        console.log(`\nExiste conexão ente o Estado de${city01.name} e o Estado de${city02.name}\n`);
+    } else {
+        console.log(`\nNão existe conexão ente o Estado de${city01.name} e o Estado de${city02.name}\n`);
+    }
+}
 
 
 
@@ -62,3 +79,7 @@ const cities = getCities('./src/data/nodes.csv');
 const edges = getEdges('./src/data/edges.csv');
 const arrOfConnections = getConections(edges)
 makeMatrix(arrOfConnections)
+
+verifyBorder(12, 14, arrOfConnections)
+
+//showNodes(cities)

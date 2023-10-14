@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const Edge = require("../entities/Edge")
-const City = require("../entities/City")
+const City = require("../entities/city")
 
 function getCities(arquivo) {
     try {

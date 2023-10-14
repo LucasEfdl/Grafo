@@ -96,15 +96,15 @@ function makeMatrix(arrOfConnections) {
             if(arrOfConnections[j].connections.includes(id)){
                 matrix[i][j] = 1
                 matrix[j][i] = 1
+            }
         }
     }
-
-    }
+    console.log(matrix);
     return matrix
 }
 
-const cities = getCities('nodes.csv');
-const edges = getEdges('edges.csv');
+const cities = getCities('./src/data/nodes.csv');
+const edges = getEdges('./src/data/edges.csv');
 
 const arrOfConnections = getConections(edges)
 

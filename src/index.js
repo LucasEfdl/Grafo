@@ -1,18 +1,8 @@
 const fs = require('fs');
 
-class City {
-    constructor(id, name) {
-        this.id = id;
-        this.name = name;
-    }
-}
+const City = require("./entities/city")
+const Edge = require("./entities/Edge")
 
-class Edge {
-    constructor(id, connections) {
-        this.id = id;
-        this.connections = connections;
-    }
-}
 
 
 function getCities(arquivo) {
@@ -31,7 +21,7 @@ function getCities(arquivo) {
 
         return cities;
     } catch (err) {
-        
+
         console.error('Error:', err.message);
         return null;
     }
@@ -110,6 +100,7 @@ function makeMatrix(arrOfConnections) {
     }
 
     }
+    return matrix
 }
 
 const cities = getCities('nodes.csv');

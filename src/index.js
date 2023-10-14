@@ -14,12 +14,6 @@ class Edge {
     }
 }
 
-function createdNode(id, arr) {
-    return {
-        id: id,
-        arr: [...arr]
-    }
-}
 
 function getCities(arquivo) {
     try {
@@ -27,15 +21,17 @@ function getCities(arquivo) {
         const lines = data.split('\n');
         lines.shift(); // Ignore the header line
 
+
         const cities = [];
 
         for (const line of lines) {
-            const [id, name] = line.split(',');
+            const [id, name] = line.replace(/\r/g, "").split(',');
             cities.push(new City(parseInt(id), name));
         }
 
         return cities;
     } catch (err) {
+        
         console.error('Error:', err.message);
         return null;
     }
@@ -60,10 +56,11 @@ function getEdges(arquivo) {
     }
 }
 
-function createdNode(id, arr) {
+function createdNode(id, name, arr) {
     const arrAux = arr.flat()
     return {
         id: id,
+        name: name,
         connections: [...arrAux]
     }
 }
@@ -83,13 +80,14 @@ function getConections(edges) {
 
         } else if (edges[i].id != count) {
 
-            const node = createdNode(count, arrAux)
+            const node = createdNode(count, cities[count], arrAux)
             arrOfNodes.push(node)
             arrAux = []
             count++
             i--
         } 
     }
+
     return arrOfNodes
 
 }
@@ -112,12 +110,12 @@ function makeMatrix(arrOfConnections) {
     }
 
     }
-    console.log(matrix);
 }
 
 const cities = getCities('nodes.csv');
 const edges = getEdges('edges.csv');
 
 const arrOfConnections = getConections(edges)
+
 
 makeMatrix(arrOfConnections)
